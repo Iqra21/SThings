@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stranger Things Fun Facts</title>
+    <style>
+        body { background-color: black; color: white; font-family: Arial, sans-serif; text-align: center; }
+        h1 { color: #ff0000; }
+        .button { background-color: #ff0000; padding: 10px 20px; font-size: 20px; border: none; cursor: pointer; margin: 10px; }
+        .fact { font-size: 18px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Stranger Things Fun Facts!</h1>
+    <div id="facts-container"></div>
+
+    <div class="options">
+        <button class="button" onclick="showFacts('eleven')">Facts about Eleven</button>
+        <button class="button" onclick="showFacts('demo-dogs')">Facts about Demo-dogs</button>
+        <button class="button" onclick="showFacts('portal')">Facts about Portals</button>
+    </div>
+
+    <div id="end-container">
+        <button class="button" onclick="goToFinalPage()">Go to Final Page</button>
+    </div>
+
+    <script>
+        function getCategoryFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('category');
+        }
+
+        function showFacts(category) {
+            let facts = [];
+
+            if (category === 'eleven') {
+                facts = [
+                    "Eleven's real name is Millie Bobby Brown.",
+                    "Eleven has telekinetic powers.",
+                    "She was raised in a lab and escaped to find her friends."
+                ];
+            } else if (category === 'demo-dogs') {
+                facts = [
+                    "Demo-dogs are a mutated version of the Demogorgon.",
+                    "They can crawl through walls and hunt in packs.",
+                    "The demo-dogs first appeared in season 2 of Stranger Things."
+                ];
+            } else if (category === 'portal') {
+                facts = [
+                    "The portal in Stranger Things connects the real world to the Upside Down.",
+                    "Hawkins lab opened the first portal by accident.",
+                    "Portals are the main source of strange phenomena in Hawkins."
+                ];
+            }
+
+            displayFacts(facts);
+        }
+
+        function displayFacts(facts) {
+            const container = document.getElementById('facts-container');
+            container.innerHTML = ''; // Clear previous content
+
+            facts.forEach(fact => {
+                const factElement = document.createElement('p');
+                factElement.className = 'fact';
+                factElement.textContent = fact;
+                container.appendChild(factElement);
+            });
+        }
+
+        function goToFinalPage() {
+            window.location.href = "finalpage.html";  // Replace with the correct URL for the Final Page
+        }
+
+        // Display facts based on category passed in the URL
+        const category = getCategoryFromURL();
+        if (category) {
+            showFacts(category);
+        }
+    </script>
+</body>
+</html>

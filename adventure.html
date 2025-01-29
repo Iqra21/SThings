@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stranger Things Adventure</title>
+    <style>
+        body { background-color: black; color: white; font-family: Arial, sans-serif; text-align: center; }
+        h1 { color: #ff0000; }
+        .button { background-color: #ff0000; padding: 10px 20px; font-size: 20px; border: none; cursor: pointer; }
+        .question { font-size: 18px; margin: 20px 0; }
+        .options { font-size: 16px; margin: 10px 0; }
+        .answer { font-size: 20px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Hawkins! Can You Escape the Upside Down?</h1>
+    <p class="question">You find yourself trapped in the Upside Down! What do you do?</p>
+
+    <form id="quizForm">
+        <div class="options">
+            <input type="radio" id="option1" name="choice" value="1">  
+            <label for="option1">Try to hide and wait for help</label><br>
+
+            <input type="radio" id="option2" name="choice" value="2">  
+            <label for="option2">Look for a way to the real world</label><br>
+
+            <input type="radio" id="option3" name="choice" value="3">  
+            <label for="option3">Call for Eleven!</label><br>
+        </div>
+
+        <button type="button" class="button" onclick="checkAnswer()">Submit Answer</button>
+    </form>
+
+    <p id="result" class="answer"></p>
+
+    <script>
+        function checkAnswer() {
+            var userChoice = document.querySelector('input[name="choice"]:checked');
+            var resultText = document.getElementById("result");
+
+            if (!userChoice) {
+                resultText.textContent = "Please choose an option!";
+                resultText.style.color = "yellow";
+                return;
+            }
+
+            var choice = userChoice.value;
+            if (choice == "1") {
+                resultText.textContent = "You try to hide, but the Demogorgon finds you! You’re stuck in the Upside Down!";
+                resultText.style.color = "red";
+                setTimeout(function() {
+                    window.location.href = "facts.html?category=demo-dogs";
+                }, 2000);
+            } else if (choice == "2") {
+                resultText.textContent = "You search through the darkness and find a portal leading back to the real world! You escaped!";
+                resultText.style.color = "green";
+                setTimeout(function() {
+                    window.location.href = "facts.html?category=portal";
+                }, 2000);
+            } else if (choice == "3") {
+                resultText.textContent = "You call for Eleven, and she appears! She helps you back to safety!";
+                resultText.style.color = "green";
+                setTimeout(function() {
+                    window.location.href = "facts.html?category=eleven";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
